@@ -33,6 +33,7 @@ fn part2(input: &Input) -> i32 {
 fn main() -> Result<()> {
     measure(|| {
         let input = input()?;
+        // let (part1, part2) = solve(&input);
         println!("Part1: {}", part1(&input));
         println!("Part2: {}", part2(&input));
         Ok(())
@@ -57,9 +58,8 @@ fn read_input<R: Read>(reader: BufReader<R>) -> Result<Input> {
 
 fn input() -> Result<Input> {
     let path = env::args()
-        .skip(1)
-        .next()
-        .with_context(|| format!("No input file given"))?;
+        .nth(1)
+        .with_context(|| "No input file given".to_owned())?;
     read_input(BufReader::new(File::open(path)?))
 }
 
