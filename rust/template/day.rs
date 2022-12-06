@@ -4,7 +4,7 @@ use std::env;
 use std::error::Error;
 use std::fs::File;
 use std::io::prelude::*;
-use std::io::{self, BufReader};
+use std::io::BufReader;
 use std::num::ParseIntError;
 use std::str::FromStr;
 
@@ -29,6 +29,11 @@ fn part2(input: &Input) -> i32 {
     // dbg!(input);
     0
 }
+
+// fn solve(input: &Input) -> (i32, i32) {
+//     dbg!(input);
+//     (0, 0)
+// }
 
 fn main() -> Result<()> {
     measure(|| {
@@ -72,6 +77,7 @@ mod tests {
     fn as_input(s: &str) -> Result<Input> {
         read_input(BufReader::new(
             s.split('\n')
+                //.skip(1)
                 .map(|s| s.trim())
                 .collect::<Vec<_>>()
                 .join("\n")
