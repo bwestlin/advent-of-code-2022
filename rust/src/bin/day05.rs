@@ -65,8 +65,7 @@ fn part2(input: &Input) -> String {
 fn top_letters(stacks: Vec<String>) -> String {
     stacks
         .iter()
-        .map(|s| s.chars().rev().next())
-        .flatten()
+        .filter_map(|s| s.chars().rev().next())
         .collect()
 }
 
@@ -84,9 +83,9 @@ impl FromStr for Step {
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let mut splits = s.split_ascii_whitespace();
         let splits = splits.by_ref();
-        let num = splits.skip(1).next().context("No num")?.parse::<usize>()?;
-        let from_idx = splits.skip(1).next().context("No from")?.parse::<usize>()? - 1;
-        let to_idx = splits.skip(1).next().context("No to")?.parse::<usize>()? - 1;
+        let num = splits.nth(1).context("No num")?.parse::<usize>()?;
+        let from_idx = splits.nth(1).context("No from")?.parse::<usize>()? - 1;
+        let to_idx = splits.nth(1).context("No to")?.parse::<usize>()? - 1;
         Ok(Step {
             num,
             from_idx,
@@ -100,7 +99,7 @@ fn read_input<R: Read>(reader: BufReader<R>) -> Result<Input> {
 
     fn parse_stack_pos(s: &str) -> Option<char> {
         if s.starts_with('[') {
-            s.chars().skip(1).next()
+            s.chars().nth(1)
         } else {
             None
         }
@@ -116,7 +115,7 @@ fn read_input<R: Read>(reader: BufReader<R>) -> Result<Input> {
 
         let mut curr = line.as_str();
         let mut row = vec![];
-        while curr.len() > 0 {
+        while !curr.is_empty() {
             let eval = &curr[0..3];
             row.push(parse_stack_pos(eval));
             if curr.len() <= 4 {
@@ -139,8 +138,8 @@ fn read_input<R: Read>(reader: BufReader<R>) -> Result<Input> {
         }
     }
 
-    for i in 0..stacks.len() {
-        stacks[i] = stacks[i].chars().rev().collect();
+    for stack in &mut stacks {
+        *stack = stack.chars().rev().collect();
     }
 
     let mut procedure = vec![];
