@@ -62,9 +62,7 @@ fn read_input<R: Read>(reader: BufReader<R>) -> Result<Input> {
 }
 
 fn input() -> Result<Input> {
-    let path = env::args()
-        .nth(1)
-        .with_context(|| "No input file given".to_owned())?;
+    let path = env::args().nth(1).context("No input file given")?;
     read_input(BufReader::new(File::open(path)?))
 }
 
