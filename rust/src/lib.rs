@@ -40,7 +40,7 @@ where
     }
     #[cfg(not(feature = "timeit"))]
     {
-        println!("It took: {}ms", dur.as_millis());
+        println!("It took: {}ms", dur.as_nanos() as f64 / 1_000_000.0);
     }
     Ok(res)
 }
