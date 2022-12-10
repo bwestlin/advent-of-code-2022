@@ -55,10 +55,7 @@ impl FromStr for Data {
 }
 
 fn read_input<R: Read>(reader: BufReader<R>) -> Result<Input> {
-    reader
-        .lines()
-        .map(|line| Ok(line?.parse::<Data>()?))
-        .collect()
+    reader.lines().map(|line| line?.parse::<Data>()).collect()
 }
 
 fn input() -> Result<Input> {
