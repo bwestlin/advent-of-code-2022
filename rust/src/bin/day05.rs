@@ -160,7 +160,7 @@ fn input() -> Result<Input> {
 mod tests {
     use super::*;
 
-    const INPUT: &'static str = "
+    const INPUT: &str = "
     [D]    
 [N] [C]    
 [Z] [M] [P]

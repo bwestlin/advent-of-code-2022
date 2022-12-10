@@ -57,7 +57,7 @@ fn input() -> Result<Input> {
 mod tests {
     use super::*;
 
-    const INPUT: &'static str = "mjqjpqmgbljsphdztnvjfqwrcgsmlb";
+    const INPUT: &str = "mjqjpqmgbljsphdztnvjfqwrcgsmlb";
 
     fn as_input(s: &str) -> Result<Input> {
         read_input(BufReader::new(

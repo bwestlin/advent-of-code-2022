@@ -196,7 +196,7 @@ fn input() -> Result<Input> {
 mod tests {
     use super::*;
 
-    const INPUT: &'static str = "
+    const INPUT: &str = "
         $ cd /
         $ ls
         dir a

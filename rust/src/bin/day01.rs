@@ -53,7 +53,7 @@ fn input() -> Result<Input> {
 mod tests {
     use super::*;
 
-    const INPUT: &'static str = "
+    const INPUT: &str = "
         1000
         2000
         3000
